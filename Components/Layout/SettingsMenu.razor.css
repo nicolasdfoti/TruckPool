@@ -1,0 +1,81 @@
+.settings-bar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 60px;
+    background-color: var(--tp-blue-dark);
+    transition: width var(--tp-transition-base);
+    overflow: hidden;
+    box-shadow: -2px 0 8px rgba(0,0,0,0.1);
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.settings-bar:hover {
+    width: 200px;
+    border-left: 10px solid white;
+}
+
+.settings-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding-top: 30px;
+    width: 100%;
+}
+
+.user-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 0 15px;
+}
+
+.user-section span {
+    color: white;
+}
+
+.user-section img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.user-name {
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: 
+        opacity var(--tp-transition-base),
+        transform var(--tp-transition-base);
+}
+
+.settings-bar:hover .user-name {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.settings-links {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    padding: 0 15px;
+}
+
+.settings-links a {
+    color: var(--tp-white);
+    text-decoration: none;
+    padding: 8px 10px;
+    border-radius: var(--tp-radius-sm);
+    transition: background-color var(--tp-transition-fast);
+}
+
+.settings-links a:hover {
+    background-color: rgba(255,255,255,0.1);
+}

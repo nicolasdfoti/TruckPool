@@ -1,0 +1,33 @@
+@page "/trucker"
+@using TruckPool.Models
+@rendermode InteractiveServer
+@using Microsoft.AspNetCore.Components.Forms
+
+<PageTitle>TruckPool - Ser Trucker</PageTitle>
+
+<h3>Llená este form:</h3>
+
+<EditForm class="load-form" Model="newDriver">
+
+    <legend>Cargá tus datos:</legend>
+
+    <input type="text" placeholder="Ingresá tu nombre completo"
+        @bind="newDriver.Name">
+
+    <input type="text" placeholder="Ingresá tu email"
+        @bind="newDriver.Email">
+
+    <input type="text" placeholder="Ingresá dónde vivís"
+        @bind="newDriver.Location">
+
+    <input type="text" placeholder="Ingresá tu rol (fletero, dueño de compañía)"
+        @bind="newDriver.Role">
+
+    <button class="home-btn" type="submit">Ser Trucker</button>
+</EditForm>
+
+@code {
+    Driver newDriver = new() {
+        DriverId = Guid.NewGuid()
+    };
+}

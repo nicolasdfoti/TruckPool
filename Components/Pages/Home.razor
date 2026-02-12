@@ -1,0 +1,71 @@
+﻿@page "/"
+@rendermode InteractiveServer
+
+<PageTitle>TruckPool - Home</PageTitle>
+
+<section class="home-hero">
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+        <div class="hero-information">
+            <h1>TruckPool</h1>
+            <p class="subtitle">
+                La solución simple y segura para tus envíos
+            </p>
+        </div>
+
+        <NavLink class="home-btn" href="envíos">
+            Crear un envío
+        </NavLink>
+    </div>
+
+    <div class="row"></div>
+
+</section>
+
+<section class="information">
+    <h2>¿Queres hacer un envío?</h2>
+    <NavLink class="home-btn" href="about">
+        Inicia sesión
+    </NavLink>
+</section>
+
+<section class="information">
+    <h2>¿Quiénes somos?</h2>
+    <p>
+        Conectamos empresas con transportistas de forma eficiente,
+        segura y transparente.
+    </p>
+    <NavLink class="home-btn" href="about">
+        Conocé más
+    </NavLink>
+</section>
+
+<section class="home-grid">
+    <div class="grid-1">
+        <div class="home-priorities">
+            <h2>Priorizamos</h2>
+            <ul class="priorities-list">
+                <li class="infrastructure">
+                    <p>Infraestructura</p>
+                </li>
+                <li class="security">
+                    <p>Seguridad</p>
+                </li>
+                <li class="dates">
+                    <p>Envíos y fechas</p>
+                </li>
+                <li class="care">
+                    <p>Cuidados</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="grid-2">
+        <h2>¿Queres convertirte en un Trucker?</h2>
+        <NavLink href="trucker" class="home-btn">
+            Llená este formulario
+        </NavLink>
+    </div>
+</section>

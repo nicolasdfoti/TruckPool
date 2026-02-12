@@ -1,0 +1,75 @@
+@page "/envíos"
+@using TruckPool.Models
+@rendermode InteractiveServer
+@using Microsoft.AspNetCore.Components.Forms
+
+<PageTitle>TruckPool - Envíos</PageTitle>
+
+<h3>Mis envíos:</h3>
+
+<EditForm class="load-form" Model="newLoad" OnValidSubmit="AddLoad">
+
+    <legend>Llená tus datos:</legend>
+
+    <input type="text" placeholder="Ingresá tu paquete"
+        @bind="newLoad.Package">
+
+    <input type="text" placeholder="Ingresá el origen"
+        @bind="newLoad.Origin">
+
+    <input type="text" placeholder="Ingresá el destino"
+        @bind="newLoad.Destiny">
+
+    <input type="text" placeholder="Ingresá las medidas"
+        @bind="newLoad.Measures">
+
+    <input type="date" placeholder="Ingresá la fecha de entrega"
+        @bind="newLoad.Date">
+
+    <button class="home-btn" type="submit">Ingresar Paquete</button>
+</EditForm>
+
+@if (LoadList.Count == 0)
+{
+    <div class="empty-list">
+        <p>Tu lista de paquetes está vacía, ¡ingresá algunos!</p>
+    </div>
+}
+else
+{   
+    <h2>Lista de tus paquetes:</h2>
+    <div class="load-grid">
+
+        @foreach (var load in LoadList)
+        {
+            <div class="load-container">
+                <h2>@load.Package</h2>
+                <p>Para ser enviado a @load.Destiny el @load.Date</p>
+                <p>Status: En progreso</p>
+            </div>
+        }
+    </div>
+}
+
+@code {
+    Load newLoad = new()
+    {
+        Date = DateTime.Today,
+        Status = "En progreso"
+    };
+
+    List<Load> LoadList = new();
+
+    void AddLoad()
+    {
+        newLoad.LoadId = Guid.NewGuid();
+
+        LoadList.Add(newLoad);
+
+        newLoad = new Load
+        {
+            Date = DateTime.Today,
+            Status = "En progreso"
+        };
+    }
+}

@@ -1,0 +1,313 @@
+/* TruckPool */
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --tp-blue-primary: #0D3B66;
+    --tp-blue-secondary: #006bb7;
+    --tp-blue-light: #E6F0FA;
+    --tp-blue-dark: #0A2A47;
+
+    --tp-white: #FFFFFF;
+    --tp-gray-light: #F5F7FA;
+    --tp-gray-medium: #D1D5DB;
+    --tp-gray-dark: #374151;
+
+    --tp-success: #16A34A;
+    --tp-warning: #F59E0B;
+    --tp-danger: #DC2626;
+
+    --tp-font-main: "IBM Plex Sans", sans-serif;
+
+    --tp-font-size-base: 16px;
+    --tp-font-size-sm: 14px;
+    --tp-font-size-lg: 18px;
+    --tp-font-size-xl: 24px;
+
+    --tp-radius-sm: 6px;
+    --tp-radius-md: 10px;
+    --tp-radius-lg: 16px;
+
+    --tp-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+    --tp-shadow-md: 0 4px 10px rgba(0, 0, 0, 0.12);
+
+    --tp-transition-fast: 0.2s ease-in-out;
+    --tp-transition-base: 0.3s ease;
+}
+
+/* ------------------------ */
+
+/* HOME */
+/* HOME HERO */
+
+.home-hero {
+    position: relative;
+    min-height: 100vh;
+    background-image: url("images/Hero.png");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(13, 59, 102, 0.6);
+}
+
+.hero-content {
+    z-index: 1;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: var(--tp-radius-md);
+}
+
+.hero-information {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.774);
+}
+
+.home-btn {
+    align-self: center;
+    cursor: pointer;
+    background-color: var(--tp-blue-secondary);
+    color: var(--tp-white);
+    border-radius: var(--tp-radius-md);
+    padding: 14px 28px;
+    box-shadow: var(--tp-shadow-md);
+    text-decoration: none;
+}
+
+.home-btn:hover {
+    transition: 0.8s ease-in-out;
+    background-color: var(--tp-blue-primary);
+    transform: translateY(-2px);
+}
+
+.row {
+    width: 70px;
+    height: 200px;
+    background-image: url("/images/arrow.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    position: absolute;
+    top: 90vh;
+    right: 50px;
+    z-index: 10;
+    transform: translateY(-50%);
+    animation: arrowBounce 2.5s ease-in-out infinite;
+}
+
+
+@keyframes arrowBounce {
+    0%, 100% {
+        transform: translateY(-50%);
+    }
+    50% {
+        transform: translateY(-40%);
+    }
+}
+
+
+/* INFO */
+.information {
+    width: 70%;
+    margin: 20px;
+    justify-self: center;
+    padding: 60px 40px;
+    background: white;
+    border-radius: var(--tp-radius-lg);
+    box-shadow: var(--tp-shadow-md);
+    text-align: center;
+}
+
+.information h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: var(--tp-blue-dark);
+}
+
+.information p {
+    color: var(--tp-gray-dark);
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+
+/* Home Grid */
+.home-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 1200px;
+    margin: 80px auto 20px;
+    gap: 80px;
+}
+
+.home-grid::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    background: var(--tp-gray-medium);
+    transform: translateX(-50%);
+}
+
+.grid-1 {
+    text-align: center;
+    padding-right: 30px;
+}
+
+.home-priorities h2 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--tp-blue-dark);
+}
+
+.priorities-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.priorities-list li {
+    position: relative;
+    min-height: 180px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--tp-radius-lg);
+    overflow: hidden;
+    list-style: none;
+    box-shadow: var(--tp-shadow-md);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.priorities-list li::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.6),
+        rgba(0,0,0,0.1)
+    );
+}
+
+.priorities-list p {
+    position: relative;
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.priorities-list li:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+}
+
+.infrastructure {
+    background-image: url("images/Hero-priorities-1.png");
+    background-size: cover;
+    background-position: center;
+}
+
+.security {
+    background-image: url("images/Hero-priorities-2.png");
+    background-size: cover;
+    background-position: center;
+}
+
+.dates {
+    background-image: url("images/Hero-priorities-3.png");
+    background-size: cover;
+    background-position: center;
+}
+
+.care {
+    background-image: url("images/Hero-priorities-4.png");
+    background-size: cover;
+    background-position: center;
+}
+
+.grid-2 {
+    background: linear-gradient(
+        135deg,
+        var(--tp-blue-dark),
+        var(--tp-blue-primary),
+        var(--tp-blue-secondary)
+    );
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    gap: 10px;
+    align-self: center;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+}
+
+.grid-2 .home-btn {
+    background-color: white;
+    color: var(--tp-blue-primary);
+}
+
+.grid-2 .home-btn:hover {
+    background-color: var(--tp-gray-light);
+}
+
+/* ----------------------- */
+
+
+/* ENVIOS */
+
+.load-form {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border: 1px solid var(--tp-blue-dark);
+    border-radius: 10px;
+    width: 50%;
+    justify-self: center;
+}
+
+.load-form input {
+    margin: 10px;
+}
+
+.empty-list {
+    text-align: center;
+}
+
+.load-grid {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;;
+}
+
+.load-container {
+    width: 40%;
+    border-radius: 10px;
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.load-container h2 {
+    text-align: center;
+}

@@ -1,0 +1,119 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --tp-blue-primary: #0D3B66;
+    --tp-blue-secondary: #006bb7;
+    --tp-blue-light: #E6F0FA;
+    --tp-blue-dark: #0A2A47;
+
+    --tp-white: #FFFFFF;
+    --tp-gray-light: #F5F7FA;
+    --tp-gray-medium: #D1D5DB;
+    --tp-gray-dark: #374151;
+
+    --tp-success: #16A34A;
+    --tp-warning: #F59E0B;
+    --tp-danger: #DC2626;
+
+    --tp-font-main: "IBM Plex Sans", sans-serif;
+
+    --tp-font-size-base: 16px;
+    --tp-font-size-sm: 14px;
+    --tp-font-size-lg: 18px;
+    --tp-font-size-xl: 24px;
+
+    --tp-radius-sm: 6px;
+    --tp-radius-md: 10px;
+    --tp-radius-lg: 16px;
+
+    --tp-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+    --tp-shadow-md: 0 4px 10px rgba(0, 0, 0, 0.12);
+
+    --tp-transition-fast: 0.2s ease-in-out;
+    --tp-transition-base: 0.3s ease;
+}
+
+html, body {
+    height: 100%;
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    min-height: 100vh;
+    background-color: #006bb7;
+    color: white;
+    z-index: 100;
+}
+
+main {
+    margin-left: 250px;
+    margin-right: 50px;
+    flex: 1;
+    min-height: 100vh;
+    overflow-y: auto;
+}
+
+footer {
+    text-align: center;
+    background-color: var(--tp-blue-secondary);
+    min-height: 10vh;
+    color: var(--tp-white);
+    padding: 1rem;
+}
+
+@media (max-width: 640.98px) {
+    .top-row {
+        justify-content: space-between;
+    }
+
+    .top-row ::deep a, .top-row ::deep .btn-link {
+        margin-left: 0;
+    }
+}
+
+@media (min-width: 641px) {
+    .page {
+        flex-direction: row;
+    }
+
+    .sidebar {
+        width: 250px;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+    }
+}
+
+#blazor-error-ui {
+    color-scheme: light only;
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+    #blazor-error-ui .dismiss {
+        cursor: pointer;
+        position: absolute;
+        right: 0.75rem;
+        top: 0.5rem;
+    }
