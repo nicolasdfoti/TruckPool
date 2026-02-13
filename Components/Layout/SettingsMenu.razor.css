@@ -1,81 +1,102 @@
-.settings-bar {
+.settings-wrapper {
     position: fixed;
     top: 0;
     right: 0;
-    height: 100vh;
-    width: 60px;
-    background-color: var(--tp-blue-dark);
-    transition: width var(--tp-transition-base);
-    overflow: hidden;
-    box-shadow: -2px 0 8px rgba(0,0,0,0.1);
-    z-index: 200;
+    bottom: 0;
+    z-index: 500;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 100vh;
+    background-color: var(--tp-blue-dark);
 }
 
-.settings-bar:hover {
-    width: 200px;
-    border-left: 10px solid white;
+.settings-toggle {
+    width: 50px;
+    height: 100px;
+    background-color: var(--tp-blue-dark);
+    border-radius: 50%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.settings-toggle img {
+    width: 40px;
+    height: 40px;
+}
+
+.settings-panel {
+    position: absolute;
+    right: 0;
+    width: 220px;
+    height: 100vh;
+    padding: 20px;
+    background-color: var(--tp-blue-dark);
+    transform: translateX(110%);
+    transition: transform var(--tp-transition-base);
+    display: flex;
+    flex-direction: column;
 }
 
 .settings-content {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 30px;
-    padding-top: 30px;
-    width: 100%;
+    height: 100%; 
+}
+
+.settings-wrapper:hover .settings-panel {
+    transform: translateX(0);
 }
 
 .user-section {
     display: flex;
     align-items: center;
-    gap: 12px;
-    width: 100%;
-    padding: 0 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid white;
+}
+
+.user-section img {
+    width: 40px;
+    height: 40px;
 }
 
 .user-section span {
     color: white;
 }
 
-.user-section img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-}
-
-.user-name {
-    white-space: nowrap;
-    opacity: 0;
-    transform: translateX(-10px);
-    transition: 
-        opacity var(--tp-transition-base),
-        transform var(--tp-transition-base);
-}
-
-.settings-bar:hover .user-name {
-    opacity: 1;
-    transform: translateX(0);
-}
-
 .settings-links {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    flex: 1;
+}
+
+.profile-settings, .close-session {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    width: 100%;
-    padding: 0 15px;
+}
+
+.close-session {
+    margin-top: auto;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255,255,255,0.2);
 }
 
 .settings-links a {
-    color: var(--tp-white);
+    width: 100%;
+    list-style: none;
+    color: white;
     text-decoration: none;
-    padding: 8px 10px;
-    border-radius: var(--tp-radius-sm);
-    transition: background-color var(--tp-transition-fast);
+    padding: 5px;
+    border-radius: 10px;
 }
 
 .settings-links a:hover {
     background-color: rgba(255,255,255,0.1);
+    transition: 0.2s ease-in-out;
 }

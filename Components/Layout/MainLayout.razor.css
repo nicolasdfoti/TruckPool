@@ -60,7 +60,7 @@ html, body {
 
 main {
     margin-left: 250px;
-    margin-right: 50px;
+    padding-right: 60px;
     flex: 1;
     min-height: 100vh;
     overflow-y: auto;
