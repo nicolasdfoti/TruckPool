@@ -1,24 +1,28 @@
 <div class="settings-wrapper">
 
     <div class="settings-toggle">
-        <img src="images/user.png" alt="Usuario" />
+        <img src="images/user-icon.png" alt="Usuario" />
     </div>
 
     <div class="settings-panel">
         <div class="settings-content">
 
             <div class="user-section">
-                <img src="images/user.png" alt="Usuario" />
+                <img src="images/user-icon.png" alt="Usuario" />
                 <span>Mi Cuenta</span>
             </div>
 
             <nav class="settings-links">
                 <div class="profile-settings">
-                    <a href="/perfil">Perfil</a>
-                    <a href="/configuración">Configuración</a>
+                    <NavLink href="/perfil" class="profile-link">
+                        Perfil
+                    </NavLink>
+                    <NavLink href="/configuración" class="profile-link">
+                        Configuración
+                    </NavLink>
                 </div>
                 <div class="close-session">
-                    <a href="#">Cerrar sesión</a>
+                    <button>Cerrar sesión</button>
                 </div>
             </nav>
 
