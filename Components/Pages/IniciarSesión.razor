@@ -1,0 +1,43 @@
+@page "/iniciar-sesión"
+@rendermode InteractiveServer
+@using TruckPool.Models
+
+<div class="form-wrapper">
+    <div class="login-container">
+        <EditForm class="login-form" Model="newUser">
+
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <fieldset>
+                <legend>Iniciar sesión</legend>
+            </fieldset>
+
+            <label for="email">
+                Ingresa tu e-mail
+                <input type="email" id="email" placeholder="Ingresá tu email">
+            </label>
+            <label for="password">
+                Ingresa tu contraseña
+                <input type="password" id="password" placeholder="Ingresá tu contraseña">
+            </label>
+
+            <button class="home-btn" type="submit">Iniciar Sesión</button>
+        </EditForm>
+    </div>
+
+    <div class="login-link">
+        <p>
+            ¿No tenés cuenta?
+            <NavLink href="/registro">
+                ¡Registrate!
+            </NavLink>
+        </p>
+    </div>
+</div>
+
+@code {
+    User newUser = new() {
+        UserId = Guid.NewGuid()
+    };
+}

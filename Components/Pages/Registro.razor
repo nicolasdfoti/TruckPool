@@ -1,0 +1,73 @@
+@page "/registro"
+@using TruckPool.Models
+
+<div class="register-page">
+
+    <section class="register-header">
+        <h2>Sé parte de TruckPool</h2>
+        <p>Tus envíos, seguros</p>
+    </section>
+
+    <section class="form-wrapper">
+        <EditForm Model="newUser" class="login-form">
+
+            <fieldset>
+                <legend>Ingresá tus datos para registrarte</legend>
+            </fieldset>
+
+            <label for="name">
+                Ingresá tu nombre
+                <input type="text" id="name" placeholder="Ingresá tu nombre"
+                    @bind="newUser.Name">
+            </label>
+            <label for="surname">
+                Ingresá tu apellido
+                <input type="text" id="surname" placeholder="Ingresá tu apellido">
+            </label>
+            <label for="email">
+                Ingresá tu email
+                <input type="email" id="email" placeholder="Ingresá tu email">
+            </label>
+            <label for="phone">
+                Ingresá tu número de teléfono
+                <input type="phone" id="phone" placeholder="Ingresá tu número de teléfono">
+            </label>
+            <label for="rol">
+                Ingresá tu rol
+                <select name="rol" id="rol">
+                    <option value="fletero">Fletero</option>
+                    <option value="usuario">Usuario</option>
+                </select>
+            </label>
+        </EditForm>
+    </section>
+
+</div>
+
+@code {
+    User newUser = new() {
+        UserId = Guid.NewGuid()
+    };
+}
+
+
+
+
+    @* <label for="name">
+        Ingresá tu nombre
+        <input type="text" id="name" placeholder="Enter your name"
+            @bind="newUser.Name">
+    </label>
+    <label for="surname">
+        Ingresá tu apellido
+        <input type="text" id="surname" placeholder="Enter your surname">
+    </label>
+    <label for="role">
+        Ingresa tu rol
+        <input type="text" id="role" placeholder="Enter your role"
+            @bind="newUser.Role">
+    </label>
+    <label for="phone">
+        Ingresa tu número de teléfono
+        <input type="phone" id="phone" placeholder="Enter your phone number">
+    </label> *@

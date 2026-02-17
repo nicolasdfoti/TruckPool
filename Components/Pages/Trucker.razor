@@ -5,26 +5,51 @@
 
 <PageTitle>TruckPool - Ser Trucker</PageTitle>
 
-<h3>Llená este form:</h3>
+<div class="form-wrapper">
 
-<EditForm class="load-form" Model="newDriver">
+    <div class="login-container">
+        <EditForm class="login-form" Model="newDriver">
 
-    <legend>Cargá tus datos:</legend>
+            <DataAnnotationsValidator />
+            <ValidationSummary />
 
-    <input type="text" placeholder="Ingresá tu nombre completo"
-        @bind="newDriver.Name">
+            <fieldset>
+                <legend>Carga tus datos:</legend>
+            </fieldset>
 
-    <input type="text" placeholder="Ingresá tu email"
-        @bind="newDriver.Email">
+            <label for="">
+                Ingresá tu nombre
+                <InputText @bind-Value="@newDriver.Name" placeholder="Ingresá tu nombre"/>
+            </label>
 
-    <input type="text" placeholder="Ingresá dónde vivís"
-        @bind="newDriver.Location">
+            <label for="">
+                Ingresá tu email
+                <InputText @bind-Value="@newDriver.Email" placeholder="Ingresá tu email"/>
+            </label>
 
-    <input type="text" placeholder="Ingresá tu rol (fletero, dueño de compañía)"
-        @bind="newDriver.Role">
+            <label for="">
+                Ingresá dónde vivís/trabajas
+                <InputText @bind-Value="@newDriver.Location" placeholder="Ingresá tu locación"/>
+            </label>
 
-    <button class="home-btn" type="submit">Ser Trucker</button>
-</EditForm>
+            <label for="">
+                Ingresá tu rol (fletero/dueño de compañía)
+                <InputText @bind-Value="@newDriver.Role" placeholder="Ingresá tu rol"/>
+            </label>
+
+            <button class="home-btn" type="submit">Ser Trucker</button>
+        </EditForm>
+    </div>
+
+    <div class="login-link">
+    <p>
+        ¿Ya sos Trucker?
+        <NavLink href="/iniciar-sesión">
+            Iniciá sesión
+        </NavLink>
+    </p>
+</div>
+</div>
 
 @code {
     Driver newDriver = new() {

@@ -5,29 +5,44 @@
 
 <PageTitle>TruckPool - Envíos</PageTitle>
 
-<h3>Mis envíos:</h3>
+<div class="form-wrapper">
+    <EditForm class="login-form" Model="newLoad" OnValidSubmit="AddLoad">
 
-<EditForm class="load-form" Model="newLoad" OnValidSubmit="AddLoad">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
 
-    <legend>Llená tus datos:</legend>
+        <fieldset>
+            <legend>Llená tus datos:</legend>
+        </fieldset>
 
-    <input type="text" placeholder="Ingresá tu paquete"
-        @bind="newLoad.Package">
+        <label for="">
+            Ingresá el paquete:
+            <InputText @bind-Value="newLoad.Package" placeholder="Ingresá tu paquete" />
+        </label>
 
-    <input type="text" placeholder="Ingresá el origen"
-        @bind="newLoad.Origin">
+        <label for="">
+            Ingresá el origen:
+            <InputText @bind-Value="newLoad.Origin" placeholder="Ingresá el origen" />
+        </label>
 
-    <input type="text" placeholder="Ingresá el destino"
-        @bind="newLoad.Destiny">
+        <label for="">
+            Ingresá el destino:
+            <InputText @bind-Value="newLoad.Destiny" placeholder="Ingresá el destino" />
+        </label>
 
-    <input type="text" placeholder="Ingresá las medidas"
-        @bind="newLoad.Measures">
+        <label for="">
+            Ingresá las medidas:
+            <InputText @bind-Value="newLoad.Measures" placeholder="Ingresá las medidas" />
+        </label>
 
-    <input type="date" placeholder="Ingresá la fecha de entrega"
-        @bind="newLoad.Date">
+        <label for="">
+            Ingresá la fecha de entrega:
+            <InputDate @bind-Value="newLoad.Date" />
+        </label>
 
-    <button class="home-btn" type="submit">Ingresar Paquete</button>
-</EditForm>
+        <button class="home-btn" type="submit">Ingresar Paquete</button>
+    </EditForm>
+</div>
 
 @if (LoadList.Count == 0)
 {
@@ -44,8 +59,8 @@ else
         {
             <div class="load-container">
                 <h2>@load.Package</h2>
-                <p>Para ser enviado a @load.Destiny el @load.Date</p>
-                <p>Status: En progreso</p>
+                <p>Para ser enviado a @load.Destiny el @load.Date.ToString("dd/MM/yyyy")</p>
+                <p>Status: @load.Status</p>
             </div>
         }
     </div>

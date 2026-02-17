@@ -43,7 +43,6 @@ html, body {
 
 .page {
     display: flex;
-    flex-direction: column;
     min-height: 100vh;
 }
 
@@ -61,15 +60,21 @@ html, body {
 main {
     margin-left: 250px;
     padding-right: 60px;
+    display: flex;
+    flex-direction: column;
     flex: 1;
-    min-height: 100vh;
-    overflow-y: auto;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 footer {
     text-align: center;
     background-color: var(--tp-blue-secondary);
-    min-height: 10vh;
+    min-height: 7vh;
     color: var(--tp-white);
     padding: 1rem;
 }
