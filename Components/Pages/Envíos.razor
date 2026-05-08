@@ -1,72 +1,126 @@
-@page "/envíos"
+@page "/envios"
 @using TruckPool.Models
-@rendermode InteractiveServer
 @using Microsoft.AspNetCore.Components.Forms
+@rendermode InteractiveServer
+@inject NavigationManager Nav
 
 <PageTitle>TruckPool - Envíos</PageTitle>
 
-<div class="form-wrapper">
-    <EditForm class="login-form" Model="newLoad" OnValidSubmit="AddLoad">
-
-        <DataAnnotationsValidator />
-        <ValidationSummary />
-
-        <fieldset>
-            <legend>Llená tus datos:</legend>
-        </fieldset>
-
-        <label for="">
-            Ingresá el paquete:
-            <InputText @bind-Value="newLoad.Package" placeholder="Ingresá tu paquete" />
-        </label>
-
-        <label for="">
-            Ingresá el origen:
-            <InputText @bind-Value="newLoad.Origin" placeholder="Ingresá el origen" />
-        </label>
-
-        <label for="">
-            Ingresá el destino:
-            <InputText @bind-Value="newLoad.Destiny" placeholder="Ingresá el destino" />
-        </label>
-
-        <label for="">
-            Ingresá las medidas:
-            <InputText @bind-Value="newLoad.Measures" placeholder="Ingresá las medidas" />
-        </label>
-
-        <label for="">
-            Ingresá la fecha de entrega:
-            <InputDate @bind-Value="newLoad.Date" />
-        </label>
-
-        <button class="home-btn" type="submit">Ingresar Paquete</button>
-    </EditForm>
+<div class="add-package-container">
+    <button class="add-package-btn" @onclick="ShowModal">
+        + Agregar Paquete
+    </button>
 </div>
+
+@if (IsModalOpen)
+{
+    <div class="modal-overlay @(IsModalClosing ? "closing" : null)" @onclick="CloseModalAsync">
+        <div class="modal-content @(IsModalClosing ? "closing" : null)"
+             role="dialog"
+             aria-modal="true"
+             aria-labelledby="modal-title"
+             @onclick:stopPropagation="true">
+
+            <h2 id="modal-title">Nuevo paquete</h2>
+
+            <EditForm class="modal-form" Model="newLoad" OnValidSubmit="AddLoad">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+
+                <label for="package">
+                    Ingresá el paquete:
+                    <InputText id="package" @bind-Value="newLoad.Package" placeholder="Ingresá tu paquete" />
+                </label>
+
+                <label for="origin">
+                    Ingresá el origen:
+                    <InputText id="origin" @bind-Value="newLoad.Origin" placeholder="Ingresá el origen" />
+                </label>
+
+                <label for="destiny">
+                    Ingresá el destino:
+                    <InputText id="destiny" @bind-Value="newLoad.Destiny" placeholder="Ingresá el destino" />
+                </label>
+
+                <label for="measurements">
+                    Ingresá las medidas:
+                    <InputText id="measurements" @bind-Value="newLoad.Measures" placeholder="Ingresá las medidas" />
+                </label>
+
+                <label for="date">
+                    Ingresá la fecha de entrega:
+                    <InputDate id="date" @bind-Value="newLoad.Date" />
+                </label>
+
+                <div class="modal-actions">
+                    <button class="home-btn" type="submit">Ingresar Paquete</button>
+                    <button type="button" class="cancel-btn" @onclick="CloseModalAsync">Cancelar</button>
+                </div>
+            </EditForm>
+        </div>
+    </div>
+}
 
 @if (LoadList.Count == 0)
 {
     <div class="empty-list">
         <p>Tu lista de paquetes está vacía, ¡ingresá algunos!</p>
+        <button class="home-btn" @onclick="ShowModal">
+            Hacer un envío
+        </button>
     </div>
 }
 else
-{   
+{
     <h2>Lista de tus paquetes:</h2>
-    <div class="load-grid">
-
-        @foreach (var load in LoadList)
-        {
-            <div class="load-container">
-                <h2>@load.Package</h2>
-                <p>Para ser enviado a @load.Destiny el @load.Date.ToString("dd/MM/yyyy")</p>
-                <p>Status: @load.Status</p>
-            </div>
-        }
-    </div>
+    <table class="shipping-table">
+        <thead>
+            <tr>
+                <th>ID del envío</th>
+                <th>Paquete</th>
+                <th>Fecha de entrega</th>
+                <th>Trucker a cargo</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var load in LoadList)
+            {
+                <tr>
+                    <td>
+                        <NavLink class="load-link" href="@($"/envios/{load.LoadId}")" title="Ver detalle">
+                            @load.LoadId
+                        </NavLink>
+                    </td>
+                    <td>@load.Package</td>
+                    <td>@load.Date.ToString("dd/MM/yyyy")</td>
+                    <td>Diego Díaz</td>
+                    <td>@load.Status</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
 
 @code {
+    bool IsModalOpen = false;
+    bool IsModalClosing = false;
+
+    void ShowModal()
+    {
+        IsModalClosing = false;
+        IsModalOpen = true;
+    }
+
+    async Task CloseModalAsync()
+    {
+        IsModalClosing = true;
+        StateHasChanged();
+        await Task.Delay(220);
+        IsModalOpen = false;
+        IsModalClosing = false;
+    }
+
     Load newLoad = new()
     {
         Date = DateTime.Today,
@@ -75,10 +129,9 @@ else
 
     List<Load> LoadList = new();
 
-    void AddLoad()
+    async Task AddLoad()
     {
         newLoad.LoadId = Guid.NewGuid();
-
         LoadList.Add(newLoad);
 
         newLoad = new Load
@@ -86,5 +139,7 @@ else
             Date = DateTime.Today,
             Status = "En progreso"
         };
+
+        await CloseModalAsync();
     }
 }

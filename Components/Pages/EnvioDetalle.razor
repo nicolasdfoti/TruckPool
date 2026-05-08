@@ -1,0 +1,95 @@
+@page "/envios/{id:guid}"
+@using TruckPool.Models
+@inject NavigationManager Nav
+@rendermode InteractiveServer
+
+<PageTitle>Detalle del envío</PageTitle>
+
+@if (isLoading)
+{
+    <div class="card skeleton">
+        <div class="skeleton-line w-50"></div>
+        <div class="skeleton-line w-30"></div>
+        <div class="skeleton-line w-60"></div>
+        <div class="skeleton-line w-40"></div>
+    </div>
+}
+else if (load is null)
+{
+    <div class="empty-state">
+        <h2>No encontramos este envío</h2>
+        <p>Revisá que el enlace sea correcto o volvé a la lista.</p>
+    </div>
+}
+else
+{
+    <div class="card">
+        <div class="card-header">
+            <div>
+                <h1>Envío <small class="badge @GetStatusClass(load.Status)">@load.Status</small></h1>
+                <p class="muted">ID: <code>@load.LoadId</code></p>
+            </div>
+            <div class="card-actions">
+                <button class="btn-secondary" title="Copiar ID" @onclick="CopyId">Copiar ID</button>
+            </div>
+        </div>
+
+        <div class="grid grid-2">
+            <div class="kv">
+                <div class="k">Paquete</div>
+                <div class="v">@load.Package</div>
+            </div>
+            <div class="kv">
+                <div class="k">Fecha de entrega</div>
+                <div class="v">@load.Date.ToString("dd/MM/yyyy")</div>
+            </div>
+            <div class="kv">
+                <div class="k">Origen</div>
+                <div class="v">@load.Origin</div>
+            </div>
+            <div class="kv">
+                <div class="k">Destino</div>
+                <div class="v">@load.Destiny</div>
+            </div>
+            <div class="kv">
+                <div class="k">Medidas</div>
+                <div class="v">@load.Measures</div>
+            </div>
+            <div class="kv">
+                <div class="k">Trucker</div>
+                <div class="v">Diego Díaz</div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter] public Guid id { get; set; }
+
+    private Load? load;
+    private bool isLoading = true;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        isLoading = true;
+        @* load = await LoadService.GetByIdAsync(id); *@
+        isLoading = false;
+    }
+
+    async Task CopyId()
+    {
+        await Task.CompletedTask;
+    }
+
+    string GetStatusClass(string? status)
+    {
+        var s = (status ?? "").ToLowerInvariant();
+        return s switch
+        {
+            "en progreso" => "badge--progress",
+            "entregado"   => "badge--success",
+            "cancelado"   => "badge--danger",
+            _             => "badge--neutral"
+        };
+    }
+}

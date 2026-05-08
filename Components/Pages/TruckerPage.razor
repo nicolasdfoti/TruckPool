@@ -1,0 +1,114 @@
+@page "/trucker"
+@using System.Reflection.Emit
+@using TruckPool.Models
+@rendermode InteractiveServer
+@using Microsoft.AspNetCore.Components.Forms
+@inject NavigationManager Nav
+
+<PageTitle>TruckPool - Ser Trucker</PageTitle>
+
+<div class="form-wrapper">
+
+    <div class="login-container">
+        <EditForm class="login-form" Model="newDriver" OnValidSubmit="Submit">
+
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <fieldset>
+                <legend>Carga tus datos:</legend>
+            </fieldset>
+
+            <label for="name">
+                Ingresá tu nombre
+                <InputText @bind-Value="@newDriver.Name" id="name" placeholder="Ingresá tu nombre"/>
+            </label>
+
+            <label for="email">
+                Ingresá tu email
+                <InputText @bind-Value="@newDriver.Email" id="email" placeholder="Ingresá tu email"/>
+            </label>
+
+            <label for="location">
+                Ingresá dónde vivís/trabajas
+                <InputText @bind-Value="@newDriver.Location" id="location" placeholder="Ingresá tu locación"/>
+            </label>
+
+            <label for="role">
+                Ingresá tu rol (fletero/dueño de compañía)
+                <InputSelect name="role" id="role" @bind-Value="newDriver.Role">
+                    <option value="" disabled selected>Elegí una opción</option>
+                    <option value="Fletero">Fletero</option>
+                    <option value="DueñoDeCompañiaDeFletes">Dueño de Compañía de fletes</option>
+                </InputSelect>
+            </label>
+
+            @if (@newDriver.Role == Role.Fletero)
+            {
+                <label>
+                    Ingresá la marca de tu flete
+                    <input type="text" placeholder="Ingresá la marca de tu flete">
+                </label>
+
+                <label>
+                    Ingresá el año de tu flete
+                    <input type="text" placeholder="Ingresá el año de tu flete">
+                </label>
+
+                <label>
+                    Ingresá la capacidad de tu flete
+                    <input type="text" placeholder="Capacidad de tu flete">
+                </label>
+
+                <label>
+                    ¿Tu flete cuenta con algún problema?
+                    <input type="textarea" placeholder="¿Tu flete cuenta con algún problema?">
+                </label>
+
+                <label class="benefits">
+                    Ingresá con qué beneficios cuenta tu flete:
+                    <input type="checkbox" /> Refrigeración
+                    <input type="checkbox"> Espacio amplio
+                </label>
+            }
+            else
+            {
+                <label>
+                    ¿Con cuántos fletes contás?
+                    <input type="number" placeholder="Número de fletes">
+                </label>
+
+                <label>
+                    ¿Con cuántos fleteros contás?
+                    <input type="number" placeholder="Número de fletes">
+                </label>
+            }
+
+            <button class="home-btn" type="submit">Ser Trucker</button>
+        </EditForm>
+    </div>
+
+    <div class="login-link">
+    <p>
+        ¿Ya sos Trucker?
+        <NavLink href="/iniciar-sesión">
+            Iniciá sesión
+        </NavLink>
+    </p>
+</div>
+</div>
+
+@code {
+    Driver newDriver = new() {
+        DriverId = Guid.NewGuid()
+    };
+    private void Submit() 
+    {
+        Nav.NavigateTo("/gracias");
+    }
+
+    void GoBack()
+    {
+        Nav.NavigateTo("/");
+    }
+}

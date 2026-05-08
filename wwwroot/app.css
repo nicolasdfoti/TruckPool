@@ -122,8 +122,7 @@
 /* INFO */
 .information {
     width: 70%;
-    margin: 20px;
-    align-self: center;
+    margin: 40px auto;
     padding: 60px 40px;
     background: white;
     border-radius: var(--tp-radius-lg);
@@ -154,27 +153,47 @@
     gap: 80px;
 }
 
-.home-grid::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    width: 1px;
-    background: var(--tp-gray-medium);
-    transform: translateX(-50%);
+@media (min-width: 1500px) {
+
+    .home-priorities {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+}
+
+.home-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    max-width: 1200px;
+    gap: 60px;
+    align-items: center;
+}
+
+@media (min-width: 1500px) {
+    .home-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 .grid-1 {
-    text-align: center;
-    padding-right: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-right: 40px;
 }
 
-.home-priorities h2 {
+.grid-1 h2 {
     font-size: 2rem;
-    text-align: center;
     margin-bottom: 40px;
     color: var(--tp-blue-dark);
+}
+
+.home-priorities {
+    width: 100%;
+    max-width: 600px;
 }
 
 .priorities-list {
@@ -276,6 +295,130 @@
 
 /* ENVIOS */
 
+.add-package-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.add-package-btn {
+    background: none;
+    color: var(--tp-blue-dark);
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: underline;
+}
+.add-package-btn:hover {
+    color: var(--tp-blue-secondary);
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+
+    animation: fadeIn 0.25s ease-out forwards;
+}
+
+.modal-overlay.closing {
+    animation: fadeOut 0.2s ease-in forwards;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 24px;
+    border-radius: 10px;
+    width: 480px;
+    max-width: 95vw;
+    box-shadow: 0 18px 48px rgba(0,0,0,0.22);
+    opacity: 0;
+    transform: translateY(-14px) scale(0.97);
+    animation: modalEnter 0.28s ease-out forwards;
+}
+
+.modal-content.closing {
+    animation: modalExit 0.2s ease-in forwards;
+}
+
+.modal-form input {
+    width: 100%;
+}
+
+.modal-form label {
+    display: block;
+    margin-bottom: 12px;
+}
+
+.modal-actions {
+    margin-top: 12px;
+    text-align: center;
+}
+
+.cancel-btn {
+    background: transparent;
+    border: 1px solid var(--tp-blue-dark);
+    padding: 6px 12px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.cancel-btn:hover {
+    background: #eee;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+@keyframes modalEnter {
+    0%   { opacity: 0; transform: translateY(-14px) scale(0.97); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes modalExit {
+    0%   { opacity: 1; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(-10px) scale(0.98); }
+}
+
+.shipping-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    border: 1px solid var(--tp-blue-dark);
+}
+
+.shipping-table th,
+.shipping-table td {
+    padding: 8px 12px;
+    border: 1px solid var(--tp-blue-dark);
+}
+
+.shipping-table thead th {
+    background-color: var(--tp-blue-light, #eaf3ff);
+    font-weight: 600;
+}
+
+.shipping-table tbody tr:hover {
+    background-color: var(--tp-blue-verylight, #f6faff);
+}
+
+.load-link {
+    color: inherit;
+    text-decoration: none;
+}
+.load-link:hover {
+    color: var(--tp-blue-secondary);
+    text-decoration: underline;
+}
+
 .form-wrapper {
     display: flex;
     flex-direction: column;
@@ -292,8 +435,14 @@
 }
 
 .empty-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    height: 100%;
 }
+
 
 .load-grid {
     padding: 20px;
@@ -313,6 +462,37 @@
     text-align: center;
 }
 
+.shipping-table {
+    width: 100%;
+    text-align: center;
+    border: 1px solid var(--tp-blue-dark);
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+
+.shipping-table th,
+.shipping-table td {
+    padding: 8px 12px;
+    border: 1px solid var(--tp-blue-dark);
+}
+
+.shipping-table thead th {
+    background-color: var(--tp-blue-light);
+    font-weight: 600;
+}
+
+.load-link {
+    color: var(--tp-blue-secondary);
+    text-decoration: none;
+    justify-content: center;
+}
+
+.load-link:hover {
+    cursor: pointer;
+    color: var(--tp-blue-secondary);
+    text-decoration: underline;
+}
+
 /* ----------------------- */
 
 
@@ -321,7 +501,7 @@
 .profile-grid {
     display: grid;
     grid-template-columns: 1.5fr 1fr;
-    margin-top: 5rem;
+    margin-top: 3rem;
 }
 
 .profile-grid-1 {
@@ -533,7 +713,7 @@
 }
 
 .values-section {
-    padding: 100px 10%;
+    padding: 70px 20%;
     text-align: center;
 }
 
@@ -578,4 +758,23 @@
 .large-btn {
     font-size: 1.1rem;
     padding: 16px 34px;
+}
+
+/* TRUCKER FORM */
+
+.benefits {
+    display: flex;
+    align-items: right;
+    justify-content: center;
+}
+
+/* GRACIAS */
+
+.thankyou-message {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
 }
